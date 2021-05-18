@@ -7,10 +7,22 @@ express.initServer = (initialPath, port) => {
         res.end();
     });
 
-    app.listen(port, () => {
+    express.server = app.listen(port, () => {
         console.log(`Express is running at port: "${port}" and initial path: "${initialPath}".`);
     });
 }
 
+express.closeServer = (time) => {
+    setTimeout(() => {
+        console.log('Closing the server...');
+        express.server.close((err) => {
+            if(err){
+                console.log(err);
+                return;
+            }
+            console.log('Server closed.')
+        })
+    }, time);
+}
 
 module.exports = express;
