@@ -26,7 +26,7 @@ express.initServer = (initialPath, port) => {
     });
 }
 
-express.closeServer = (time) => {
+express.closeServer = (ms=1000) => {
     setTimeout(() => {
         console.log('Closing the server...');
         express.server.close((err) => {
@@ -36,7 +36,7 @@ express.closeServer = (time) => {
             }
             console.log('Server closed.')
         })
-    }, time);
+    }, ms);
 }
 
 module.exports = express;
